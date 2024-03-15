@@ -55,3 +55,8 @@ docker-compose up -d
 - Storage Access API only work using secure connections, so make sure to access the websites using `https`
 - If websites using the Storage Access API are within the same Related Websites Set, prompting the user is
   not required, access is granted by default
+  - To test Related Websites Set locally open Chrome with the flag `--use-related-website-set`
+  - If you're using Google Chrome Canary simply use the following command
+    ```shell
+    /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --use-related-website-set="{\"primary\": \"https://sitea.com\", \"associatedSites\": [\"https://siteb.com\"]}"
+    ```
