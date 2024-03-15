@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Site A</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js"></script>
+  </head>
+  <body onload="readCookies()">
+    <header>
+      <a href="https://sitea.com" class="logo">
+        <p>Site A</p>
+      </a>
+      <nav>
+        <a href="https://siteb.com">Site B</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Welcome to <span>Site A</span></h1>
+      <section class="content">
+        <div class="embed">
+          <iframe src="https://siteb.com" frameborder="0"></iframe>
+        </div>
+        <div class="cookies">
+          <h3>Cookies read by site A:</h3>
+          <div id="cookies">Loading...</div>
+          <form action="#" onsubmit="setCookie(event)">
+            <p>Set a cookie</p>
+            <input type="text" name="cookieName" placeholder="Name" required />
+            <input type="text" name="cookieValue" placeholder="Value" required />
+            <button type="submit">Set</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

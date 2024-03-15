@@ -1,0 +1,123 @@
+:root {
+  --light-grey: #e2e2e2;
+  --primary: #2c2c54;
+  --primary-light: #474787;
+  --secondary: #aaabb8;
+
+  font-size: 16px;
+}
+
+body,
+*,
+a {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  color: #333333;
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  padding: 0 1.5rem;
+  gap: 5rem;
+  box-shadow: 0px 2px 4px var(--light-grey);
+  background-color: var(--primary-light);
+}
+
+header .logo p {
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  background-color: var(--primary);
+  border-radius: 9999px;
+  padding: 0.5rem 1.5rem;
+}
+
+header nav {
+  display: flex;
+  gap: 1rem;
+  text-decoration: underline;
+  font-weight: 600;
+  color: white;
+}
+
+header nav a {
+  color: white;
+}
+
+main {
+  padding: 2rem 1.5rem;
+}
+
+main h1 {
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+main h1 span {
+  font-weight: 600;
+}
+
+section.content {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.cookies {
+  flex: 1;
+  border-radius: 5px;
+  border: 1px solid var(--light-grey);
+  box-shadow: 0px 0px 8px 2px var(--light-grey);
+  padding: 1rem;
+}
+
+.cookies {
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  background-color: var(--secondary);
+}
+
+.cookies #cookies {
+  flex: 1;
+  margin: 1rem 0;
+}
+
+#cookies p {
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.cookies form {
+  border-top: 1px solid var(--light-grey);
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cookies form label {
+  background-color: var(--light-grey);
+  border-radius: 2px;
+  padding: calc(0.2rem + 1px);
+}
+
+.cookies p {
+  margin-right: 0.5rem;
+  font-weight: 600;
+}
+
+input,
+button {
+  padding: 0.2rem;
+}
+
+.hidden {
+  display: none;
+}

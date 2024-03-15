@@ -1,0 +1,32 @@
+version: '3'
+services:
+  nginx-proxy:
+    build: reverseProxy
+    restart: always
+    depends_on:
+      - sitea
+      - siteb
+      - sitec
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - mynet
+  sitea:
+    build: siteA
+    restart: always
+    ports:
+      - 8081:80
+      - 8082:443
+    networks:
+      - mynet
+  siteb:
+    build: siteB
+    restart: always
+    ports:
+      - 8083:80
+      - 8084:443
+    networks:
+      - mynet
+networks:
+  mynet:

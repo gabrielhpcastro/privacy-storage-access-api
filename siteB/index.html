@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Site B</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js"></script>
+  </head>
+  <body onload="onLoad()">
+    <header>
+      <a href="https://siteb.com" class="logo">
+        <p>Site B</p>
+      </a>
+      <nav>
+        <a href="https://sitea.com">Site A</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Welcome to <span>Site B</span></h1>
+      <section class="content">
+        <div class="cookies">
+          <h3>Cookies read by site B:</h3>
+          <div id="cookies">Loading...</div>
+          <form action="#" onsubmit="setCookie(event)">
+            <p>Set a cookie</p>
+            <input type="text" name="cookieName" placeholder="Name" required />
+            <input type="text" name="cookieValue" placeholder="Value" required />
+            <label for="partitioned"
+              ><input type="checkbox" name="cookiePartitioned" id="partitioned" /> Partitioned</label
+            >
+            <button type="submit">Set</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
