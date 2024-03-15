@@ -53,3 +53,5 @@ docker-compose up -d
 ## Notes
 
 - Storage Access API only work using secure connections, so make sure to access the websites using `https`
+- If websites using the Storage Access API are within the same Related Websites Set, prompting the user is
+  not required, access is granted by default
