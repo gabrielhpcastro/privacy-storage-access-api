@@ -9,17 +9,14 @@ function setCookie(event) {
     return;
   }
 
-  if (cookiePartitioned === 'on') {
-    document.cookie = `__Host-${cookieName}=${cookieValue}; Path=/; SameSite=None; Secure; Partitioned;`;
-  } else {
-    document.cookie = `${cookieName}=${cookieValue}; Path=/; SameSite=None; Secure;`;
-  }
+  document.cookie = `${cookieName}=${cookieValue}; SameSite=None; Secure`;
+
   alert('Cookie created!');
 
   readCookies();
 }
 
-function onLoad() {
+async function onLoad() {
   const header = document.querySelector('header');
   const welcomeMessage = document.querySelector('main > h1');
   const isIframe = window !== window.parent;
@@ -29,11 +26,42 @@ function onLoad() {
     welcomeMessage.classList.add('hidden');
   }
 
-  readCookies();
+  storageAccess();
+}
+
+async function storageAccess() {
+  console.log('Handling storage access');
+
+  const hasAccess = await document.hasStorageAccess();
+
+  if (hasAccess) {
+    // Do nothing, reading third-party cookies will work already
+    readCookies();
+  } else {
+    // Requests storage access in order to read third-party cookies
+    const permission = await navigator.permissions.query({ name: 'storage-access' });
+
+    if (permission.state === 'granted') {
+      // User already granted permission, storage access can be requested right away
+      await document.requestStorageAccess();
+      readCookies();
+    } else if (permission.state === 'prompt') {
+      // User has not given permission, appends button to request user permission
+      const button = document.createElement('button');
+      button.innerText = 'Grant Access';
+      button.onclick = async () => {
+        await document.requestStorageAccess();
+        readCookies();
+      };
+      document.body.appendChild(button);
+    }
+  }
 }
 
 function readCookies() {
-  const cookies = document.cookie && document.cookie.split(';');
+  console.log('Reading cookies');
+
+  const cookies = (document.cookie && document.cookie.split(';')) || [];
   const el = document.getElementById('cookies');
 
   if (el) {
@@ -48,5 +76,21 @@ function readCookies() {
     } else {
       el.innerText = 'No cookies set';
     }
+  }
+
+  const cookiesObj = cookies.reduce((obj, cookie) => {
+    const [key, value] = cookie.split('=');
+
+    return { ...obj, [key]: value };
+  }, {});
+
+  setBackground(cookiesObj.backgroundColor);
+}
+
+function setBackground(backgroundColor) {
+  const el = document.querySelector('.cookies');
+
+  if (backgroundColor && el) {
+    el.style.backgroundColor = backgroundColor;
   }
 }

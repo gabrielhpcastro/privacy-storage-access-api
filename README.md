@@ -1,13 +1,13 @@
-# 🍪 CHIPS (Cookies Having Independent Partitioned State)
+# 🍪 Storage Access API
 
-Is a privacy sandbox initiative to prevent the usage of third-party cookies for
-cross-site tracking.
+Storage Access API makes it possible for websites to use third-party cookies when
+embedded into an iframe by explicitly asking the user permission for that.
 
-With chips, in order to be able to set a third-party cookie, the application needs
-to provide a `Partitioned` attribute to the cookie. By using this parameter, cookies
-will only be available at the host site where the cookie was set.
+Check more details at the references:
 
-Check more details at the reference: https://developers.google.com/privacy-sandbox/3pcd/chips
+- **Related website sets:** https://developers.google.com/privacy-sandbox/3pcd/related-website-sets
+- **Related website sets guide:** https://developers.google.com/privacy-sandbox/3pcd/related-website-sets-integration
+- **Storage Access API:** https://developers.google.com/privacy-sandbox/3pcd/storage-access-api
 
 ## How to run
 
@@ -16,7 +16,6 @@ Check more details at the reference: https://developers.google.com/privacy-sandb
 ```txt
 127.0.0.1 sitea.com
 127.0.0.1 siteb.com
-127.0.0.1 sitec.com
 ```
 
 - Generate a self signed ssl certificate and save it at `reverseProxy/ssl`
@@ -35,16 +34,22 @@ docker-compose up -d
 
 #### 🧪 Third party cookies allowed
 
-- With third-party cookies enabled go to Site A and set a cookie using Site C (via the iframe)
-- Check that the cookie set on Site A is also available when you navigate to Site B or Site C
+- With third-party cookies enabled go to Site B and set a cookie called `backgroundColor` with a valid CSS color value
+- Visit Site A and check that the cookie set on Site B is available to the iframe and the background color is applied
 
 #### 🧪 Third party cookies blocked
 
-- With third-party cookies disabled go to Site A and set a cookie using Site C (via the iframe)
-  - If you don't check the **Partitioned** checkbox, no cookie will be set
-  - If you check the **Partitioned** checkbox, a cookie will be set
-- Check that the cookie set on Site A is not available when you navigate to Site B or Site C
+- With third-party cookies enabled go to Site B and set a cookie called `backgroundColor` with a valid CSS color value
+- Visit Site A and check that the cookie set on Site B is not available to the iframe and the background color is not applied
+- Scroll the iframe to the bottom, click on the "Grant access" button and accept the prompt
+- Check that once you allow the access to the Storage Access API, Site B is able to access its own cookies via the iframe
+  and the background color is applied
+
+#### 🧪 Third party cookies blocked (extra)
+
+- Change the `backgroundColor` cookie value via the iframe on Site A
+- Visit Site B and check that the cookie set via the iframe also applies to Site B
 
 ## Notes
 
-- CHIPS only work using secure connections, so make sure to access the websites using `https`
+- Storage Access API only work using secure connections, so make sure to access the websites using `https`

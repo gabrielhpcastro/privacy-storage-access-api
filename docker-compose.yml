@@ -6,7 +6,6 @@ services:
     depends_on:
       - sitea
       - siteb
-      - sitec
     ports:
       - 80:80
       - 443:443

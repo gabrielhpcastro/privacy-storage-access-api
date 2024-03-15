@@ -31,3 +31,5 @@ function readCookies() {
     }
   }
 }
+
+// window.addEventListener('message', console.log);
